@@ -9,6 +9,23 @@ CREATE TABLE Utenti
     ruolo        varchar(11) CHECK (ruolo IN ('Cliente', 'Ristoratore'))
 )
 
+CREATE TABLE Ristoranti
+(
+    id_ristorante serial primary key,
+    nome varchar(100),
+    nazione varchar(50),
+    citta varchar(50),
+    indirizzo varchar(255),
+    latitudine double precision,
+    longitudine double precision,
+    prezzoMedio int,
+    delivery boolean,
+    prenotazione boolean,
+    tipoCucina varchar(50),
+    stelle double precision,
+    usernameRistoratore varchar(50) references Utenti(username)
+)
+
 CREATE TABLE Recensioni
 (
     id_recensione INT PRIMARY KEY NOT NULL,
