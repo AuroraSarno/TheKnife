@@ -37,3 +37,12 @@ CREATE TABLE Recensioni
     FOREIGN KEY (id_ristorante) REFERENCES Ristoranti (id_ristorante),
     FOREIGN KEY (username) REFERENCES Clienti (username)
 )
+
+CREATE TABLE Preferiti
+(
+    id_ristorante INT,
+    username VARCHAR(50),
+    PRIMARY KEY (id_ristorante, username),
+    FOREIGN KEY (id_ristorante) REFERENCES Ristoranti(id_ristorante) ON DELETE CASCADE,
+    FOREIGN KEY (username) REFERENCES Utenti(username) ON DELETE CASCADE
+)
