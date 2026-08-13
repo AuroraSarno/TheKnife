@@ -11,19 +11,18 @@ CREATE TABLE Utenti
 
 CREATE TABLE Ristoranti
 (
-    id_ristorante serial primary key,
-    nome varchar(100),
-    nazione varchar(50),
-    citta varchar(50),
-    indirizzo varchar(255),
-    latitudine double precision,
-    longitudine double precision,
-    prezzoMedio int,
-    delivery boolean,
-    prenotazione boolean,
-    tipoCucina varchar(50),
+    id_ristorante serial PRIMARY KEY ,
+    nome varchar(100) NOT NULL,
+    indirizzo varchar(255) NOT NULL,
+    latitudine double precision NOT NULL,
+    longitudine double precision NOT NULL,
+    prezzoMedio int NOT NULL,
+    delivery boolean NOT NULL,
+    prenotazione boolean NOT NULL,
+    tipoCucina varchar(50) NOT NULL,
     stelle double precision,
-    usernameRistoratore varchar(50) references Utenti(username)
+    usernameRistoratore varchar(50) REFERENCES Utenti(username) ON DELETE CASCADE,
+    id_citta integer REFERENCES Citta(id_citta)
 )
 
 CREATE TABLE Recensioni
