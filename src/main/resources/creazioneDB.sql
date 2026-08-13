@@ -46,3 +46,11 @@ CREATE TABLE Preferiti
     FOREIGN KEY (id_ristorante) REFERENCES Ristoranti(id_ristorante) ON DELETE CASCADE,
     FOREIGN KEY (username) REFERENCES Utenti(username) ON DELETE CASCADE
 )
+
+CREATE TABLE Citta(
+    id_citta serial PRIMARY KEY,
+    nome varchar(100) NOT NULL,
+    nazione varchar(100) NOT NULL,
+    latitudine double precision NOT NULL,
+    longitudine double precision NOT NULL
+)

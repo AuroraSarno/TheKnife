@@ -8,18 +8,12 @@ import java.util.Date;
 import ServerTK.Utente.Ruolo;
 
 public class GestoreUtenti {
-    //campi
-    //per mandare query a database
-    ConnessioneDatabase connessioneDatabase;
-    public GestoreUtenti(ConnessioneDatabase cD) {
-        connessioneDatabase = cD;
-    }
 
     //metodi
     //metodo per inserire utente nella tabella Utenti
     public boolean registrazione(String username, String nome, String cognome, String password, String domicilio, Date data, Ruolo ruolo) {
         String query= "INSERT into Utenti VALUES(?,?,?,?,?,?,?)";
-        try(Connection connection=connessioneDatabase.getConnection();) {
+        try(Connection connection=ConnessioneDatabase.getConnection();) {
             PreparedStatement statement=connection.prepareStatement(query);
             statement.setString(1, username);
             statement.setString(2, nome);
@@ -28,10 +22,10 @@ public class GestoreUtenti {
             statement.setString(5, domicilio);
             statement.setDate(6, (java.sql.Date) data);
             statement.setString(7, ruolo.name());
-            int righeModificate = statement.executeUpdate(query);
+            int righeModificate = statement.executeUpdate();
             return righeModificate > 0;
         } catch (SQLException e) {
-            System.out.println(e.getMessage());
+            System.err.println(e.getMessage());
             return false;
         }
 
@@ -39,7 +33,7 @@ public class GestoreUtenti {
 
     public Utente login(String username, String password) {
         String query= "SELECT * FROM Utenti WHERE username = ? AND password = ?";
-        try(Connection connection= connessioneDatabase.getConnection();
+        try(Connection connection= ConnessioneDatabase.getConnection();
             PreparedStatement statement= connection.prepareStatement(query);){
             statement.setString(1,username);
             statement.setString(2,password);
@@ -48,7 +42,7 @@ public class GestoreUtenti {
                 return new Utente(resultSet.getString("username"),resultSet.getString("password"),resultSet.getString("nome"),resultSet.getString("cognome"),resultSet.getString("domicilio"),resultSet.getDate("data"),Ruolo.valueOf(resultSet.getString("ruolo")));
             }else {return null;}
         } catch (SQLException e) {
-            System.out.println(e.getMessage());
+            System.err.println(e.getMessage());
             return null;
         }
     }
