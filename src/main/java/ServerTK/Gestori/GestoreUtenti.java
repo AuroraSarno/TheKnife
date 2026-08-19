@@ -1,11 +1,13 @@
-package ServerTK;
+package ServerTK.Gestori;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Date;
-import ServerTK.Utente.Ruolo;
+
+import ServerTK.Modelli.Utente;
+import ServerTK.Modelli.Utente.Ruolo;
 
 public class GestoreUtenti {
 
@@ -13,7 +15,7 @@ public class GestoreUtenti {
     //metodo per inserire utente nella tabella Utenti
     public boolean registrazione(String username, String nome, String cognome, String password, String domicilio, Date data, Ruolo ruolo) {
         String query= "INSERT into Utenti VALUES(?,?,?,?,?,?,?)";
-        try(Connection connection=ConnessioneDatabase.getConnection();) {
+        try(Connection connection= ConnessioneDatabase.getConnection();) {
             PreparedStatement statement=connection.prepareStatement(query);
             statement.setString(1, username);
             statement.setString(2, nome);

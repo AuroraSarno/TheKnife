@@ -1,4 +1,4 @@
-package ServerTK;
+package ServerTK.Modelli;
 
 import java.util.Date;
 

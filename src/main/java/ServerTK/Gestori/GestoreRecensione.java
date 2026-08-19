@@ -1,6 +1,8 @@
-package ServerTK;
+package ServerTK.Gestori;
 
-import ServerTK.ConnessioneDatabase;
+import ServerTK.Modelli.Recensione;
+import ServerTK.Modelli.Ristorante;
+import ServerTK.Modelli.Utente;
 
 import java.sql.*;
 import java.util.ArrayList;

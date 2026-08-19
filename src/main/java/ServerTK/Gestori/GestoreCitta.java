@@ -1,4 +1,6 @@
-package ServerTK;
+package ServerTK.Gestori;
+
+import ServerTK.Modelli.Citta;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -17,7 +19,7 @@ public class GestoreCitta {
 
     public List<Citta> listaCittaPerNazione(String nazione) {
         List<Citta> citta = new ArrayList<>();
-        String query = "SELECT nome FROM citta WHERE nazione=? ORDER BY nome";
+        String query = "SELECT * FROM citta WHERE nazione=? ORDER BY nome";
         try (Connection connection = ConnessioneDatabase.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(query);) {
             preparedStatement.setString(1, nazione);

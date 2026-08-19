@@ -1,4 +1,4 @@
-package ServerTK;
+package ServerTK.Modelli;
 
 public class Citta {
     private int id;

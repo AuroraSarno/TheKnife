@@ -1,5 +1,7 @@
-package ServerTK;
+package ServerTK.Gestori;
 
+
+import ServerTK.Modelli.Ristorante;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -63,7 +65,7 @@ public class GestoreRistorante{
         }
 
         try(Connection con = ConnessioneDatabase.getConnection();
-        PreparedStatement ps = con.prepareStatement(sql.toString())) {
+            PreparedStatement ps = con.prepareStatement(sql.toString())) {
 
             for(int i = 0; i < valoriParametri.size(); i++){
                 ps.setObject(i+1, valoriParametri.get(i));

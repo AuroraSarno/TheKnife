@@ -1,4 +1,4 @@
-package ServerTK;
+package ServerTK.Modelli;
 
 /**
  * Rappresenta la relazione tra l'utente e il ristorante salvato nei preferiti.

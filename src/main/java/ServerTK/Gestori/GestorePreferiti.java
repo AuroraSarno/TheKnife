@@ -1,5 +1,8 @@
-package ServerTK;
+package ServerTK.Gestori;
 
+import ServerTK.Modelli.Preferito;
+import ServerTK.Modelli.Ristorante;
+import ServerTK.Modelli.Utente;
 import eccezioni.ListaVuotaException;
 
 import java.sql.*;
