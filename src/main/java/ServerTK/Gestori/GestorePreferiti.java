@@ -66,16 +66,16 @@ public class GestorePreferiti {
 
     }
 
-    public List<Preferito> visualizzaPreferiti(Utente utente) throws ListaVuotaException {
+    public List<Ristorante> visualizzaPreferiti(Utente utente) throws ListaVuotaException {
         if (utente == null) {
             throw new NullPointerException("Utente non esistente");
         }
 
-        List<Preferito> listapreferiti = new ArrayList<>();
+        List<Ristorante> listapreferiti = new ArrayList<>();
 
-        String queryGetLista = "SELECT nome FROM Ristoranti " +
-                "JOIN Preferiti ON Ristoranti.id_ristorante = Preferiti.id_ristorante " +
-                "WHERE username = ?";
+        String queryGetLista = "SELECT * FROM Ristoranti "+
+                "JOIN Preferiti ON Preferiti.id_ristorante = Ristoranti.id_ristorante "
+                + "WHERE Preferiti.username = ?";
         try (Connection conn = ConnessioneDatabase.getConnection();
              PreparedStatement stmt = conn.prepareStatement(queryGetLista)) {
 
@@ -83,9 +83,33 @@ public class GestorePreferiti {
 
             try (ResultSet rs = stmt.executeQuery()) {
                 while (rs.next()) {
-                    String username = utente.getUsername(); //l'utente viene già passato come parametro
-                    String nomeRistorante = rs.getString("nome");
-                    listapreferiti.add(new Preferito(username, nomeRistorante));
+                    //Estraggo i dati dal db relativi al ristorante
+                    int id_ristorante = rs.getInt("id_ristorante");
+                    String nome = rs.getString("nome");
+                    String indirizzo = rs.getString("indirizzo");
+                    double latitudine = rs.getDouble("latitudine");
+                    double longitudine = rs.getDouble("longitudine");
+                    int prezzoMedio = rs.getInt("prezzoMedio");
+                    boolean delivery = rs.getBoolean("delivery");
+                    boolean prenotazione = rs.getBoolean("prenotazione");
+                    String tipoCucina = rs.getString("tipoCucina");
+
+                    //Double invece di double per accettare i null
+                    double valoreStelle = rs.getDouble("stelle");
+                    Double stelle = rs.wasNull() ? null : valoreStelle;
+
+                    String proprietario = rs.getString("usernameRistoratore"); //proprietario
+                    int id_citta = rs.getInt("id_citta");
+
+                    //Creo l'oggetto Ristorante tramite costruttore pubblico
+                    Ristorante ristorante = new Ristorante(
+                            id_ristorante, nome, indirizzo, latitudine, longitudine,
+                            prezzoMedio, delivery, prenotazione, tipoCucina,
+                            stelle, proprietario, id_citta
+                    );
+
+                    //Lo aggiungo alla lista
+                    listapreferiti.add(ristorante);
                 }
             } // non serve il catch perché il try è annidato nell'altro try, il quale già catcha SQLexception
         } catch (SQLException e) {

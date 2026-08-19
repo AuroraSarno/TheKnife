@@ -27,14 +27,14 @@ CREATE TABLE Ristoranti
 
 CREATE TABLE Recensioni
 (
-    id_recensione INT PRIMARY KEY NOT NULL,
+    id_recensione SERIAL PRIMARY KEY NOT NULL,
     testo         VARCHAR(250),
     stelle        INT             NOT NULL CHECK (stelle >= 1 AND stelle <= 5),
     risposta      VARCHAR(250),
     id_ristorante INT             NOT NULL,
     username      VARCHAR(50)     NOT NULL,
-    FOREIGN KEY (id_ristorante) REFERENCES Ristoranti (id_ristorante),
-    FOREIGN KEY (username) REFERENCES Clienti (username)
+    FOREIGN KEY (id_ristorante) REFERENCES Ristoranti (id_ristorante) ON DELETE CASCADE,
+    FOREIGN KEY (username) REFERENCES Utenti (username) ON DELETE CASCADE
 )
 
 CREATE TABLE Preferiti
