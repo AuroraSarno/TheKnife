@@ -19,7 +19,7 @@ public class Recensione {
     /**
      * Identificatore della recensione.
      */
-    private int idRecensione;
+    private int id_recensione;
 
     /**
      * Identificatore del ristorante cui la recensione si riferisce.
@@ -52,7 +52,6 @@ public class Recensione {
      *      Inizializza i campi dell'oggetto <code>Recensione</code> controllando il testo e le stelle.
      *      In caso di dati non validi, lancia un'eccezione <code>IllegalArgumentException</code>.
      * </p>
-     * @param nomeRistorante Nome del ristorante cui la recensione si riferisce.
      * @param testo Testo della recensione.
      * @param stelle Valutazione in stelle della recensione (da 1 a 5) in <code>int</code>.
      * @param rispostaRecensione Risposta alla recensione da parte del ristorante.
@@ -60,11 +59,11 @@ public class Recensione {
      * @throws IllegalArgumentException Se il testo è null o più lungo di 250 caratteri, o se le stelle non sono tra 1 e 5.
      */
 
-    public Recensione(int id_ristorante, String testo, int stelle, String rispostaRecensione, String username) throws IllegalArgumentException {
+    public Recensione(int id_recensione, int id_ristorante, String testo, int stelle, String rispostaRecensione, String username) throws IllegalArgumentException {
         if (testo==null || testo.length()>250 || stelle<1 || stelle>5){
             throw new IllegalArgumentException("Dati recensione non validi");
         }
-        this.idRecensione=idRecensione;
+        this.id_recensione=id_recensione;
         this.id_ristorante=id_ristorante;
         this.testo=testo;
         this.stelle=stelle;
@@ -74,9 +73,9 @@ public class Recensione {
 
     //METODI GETTER E SETTER
 
-    public int getIdRecensione () { return idRecensione;}
+    public int getId_recensione () { return id_recensione;}
 
-    public void setIdRecensione (int idRecensione) { this.idRecensione=idRecensione; }
+    public void setId_recensione (int id_recensione) { this.id_recensione=id_recensione; }
     /**
      * Restituisce l'identificatore del ristorante cui la recensione si riferisce.
      * @return id del ristorante.

@@ -20,8 +20,8 @@ public class GestoreRecensione {
         String rispostaRecensione = rs.getString("risposta_recensione");
         String username = rs.getString("username");
 
-        Recensione rec = new Recensione(id_ristorante, testo, stelle, rispostaRecensione, username);
-        rec.setIdRecensione(idRecensione);
+        Recensione rec = new Recensione(int id_recensione, id_ristorante, testo, stelle, rispostaRecensione, username);
+        rec.setId_recensione(id_recensione);
         return rec;
     }
     public List<Recensione> getRecensioni() {
@@ -64,7 +64,7 @@ public class GestoreRecensione {
             if (haTesto) pstmt.setString(paramIndex++, testoMod);
             if (haStelle) pstmt.setInt(paramIndex++, stelleMod);
 
-            pstmt.setInt(paramIndex++, rec.getIdRecensione());
+            pstmt.setInt(paramIndex++, rec.getId_recensione());
             pstmt.setString(paramIndex, utente.getUsername());
 
             int righeMod = pstmt.executeUpdate();
@@ -88,7 +88,7 @@ public class GestoreRecensione {
              PreparedStatement pstmt = conn.prepareStatement(query)) {
 
             pstmt.setString(1, risposta);
-            pstmt.setInt(2, rec.getIdRecensione());
+            pstmt.setInt(2, rec.getId_recensione());
 
             int righeMod = pstmt.executeUpdate();
             if (righeMod == 0) {
@@ -103,7 +103,7 @@ public class GestoreRecensione {
         }
     }
 
-    public void inserisciRecensione(Ristorante ris, String testo, int stelle, String username) {
+    public void inserisciRecensione(Ristorante ris, int id_recensione, String testo, int stelle, String username) {
         String countQuery = "SELECT COALESCE(MAX(id_recensione), 0) + 1 AS next_id FROM Recensioni";
         String insertQuery = "INSERT INTO Recensioni (id_recensione, testo, stelle, risposta, id_ristorante, username)" +
                 " VALUES (?, ?, ?, ?, ?, ?)";
@@ -111,25 +111,25 @@ public class GestoreRecensione {
         Recensione nuova = new Recensione(ris.getId_ristorante(), testo, stelle, null, username);
 
         try (Connection conn = ConnessioneDatabase.getConnection();
-             Statement stmt = conn.createStatement();
-             ResultSet rs = stmt.executeQuery(countQuery)) {
 
-            int nextId = 1;
-            if (rs.next()) {
-                nextId = rs.getInt("next_id");
-            }
+             PreparedStatement pstmt = conn.prepareStatement(insertQuery, Statement.RETURN_GENERATED_KEYS)) {
 
-            nuova.setIdRecensione(nextId);
+            pstmt.setInt(1, id_recensione);
+            pstmt.setString(2, testo);
+            pstmt.setInt(3, stelle);
+            pstmt.setNull(4, Types.VARCHAR);
+            pstmt.setInt(5, ris.getId_ristorante());
+            pstmt.setString(6, username);
 
-            try (PreparedStatement pstmt = conn.prepareStatement(insertQuery)) {
-                pstmt.setInt(1, nextId);
-                pstmt.setString(2, testo);
-                pstmt.setInt(3, stelle);
-                pstmt.setNull(4, Types.VARCHAR); // Nessuna risposta inizialmente
-                pstmt.setInt(5, ris.getId_ristorante()); // Richiede getIdRistorante() in Ristorante
-                pstmt.setString(6, username);
+            pstmt.executeUpdate();
 
-                pstmt.executeUpdate();
+            try (ResultSet generatedKeys = pstmt.getGeneratedKeys()) {
+                if (generatedKeys.next()) {
+                    int idGenerato = generatedKeys.getInt(1);
+                    nuova.setId_recensione(idGenerato); // Aggiorniamo l'oggetto Java
+                } else {
+                    throw new SQLException("La creazione della recensione è fallita, nessun ID ottenuto.");
+                }
             }
 
         } catch (SQLException e) {
@@ -143,7 +143,7 @@ public class GestoreRecensione {
         try (Connection conn = ConnessioneDatabase.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(query)) {
 
-            pstmt.setInt(1, rec.getIdRecensione());
+            pstmt.setInt(1, rec.getId_recensione());
             int rigaMod = pstmt.executeUpdate();
 
             if (rigaMod == 0) {
@@ -155,28 +155,35 @@ public class GestoreRecensione {
         }
     }
 
-    public void visualizzaRiepilogo(Ristorante ris) throws IllegalArgumentException {
-        String query = "SELECT COUNT(*) AS num_recensioni, AVG(stelle) " +
-                "AS media_stelle FROM Recensioni WHERE id_ristorante = ?";
+    public void visualizzaRiepilogo(Ristorante ris, String testo, int stelle, String username) throws IllegalArgumentException {
+        String insertQuery = "INSERT INTO Recensioni (testo, stelle, risposta, id_ristorante, username) " +
+                "VALUES (?, ?, ?, ?, ?)";
+
+        Recensione nuova = new Recensione(ris.getId_ristorante(), testo, stelle, null, username);
 
         try (Connection conn = ConnessioneDatabase.getConnection();
-             PreparedStatement pstmt = conn.prepareStatement(query)) {
+             // 2. Diciamo al PreparedStatement di restituirci le chiavi generate automaticamente
+             PreparedStatement pstmt = conn.prepareStatement(insertQuery, Statement.RETURN_GENERATED_KEYS)) {
 
-            pstmt.setInt(1, ris.getId_ristorante());
-            try (ResultSet rs = pstmt.executeQuery()) {
-                if (rs.next()) {
-                    int cont = rs.getInt("n_recensioni");
-                    if (cont == 0) {
-                        throw new IllegalArgumentException("Nessuna recensione presente per questo ristorante.");
-                    }
-                    double media = rs.getDouble("media_stelle");
-                    System.out.println("Numero di recensioni: " + cont);
-                    System.out.println("Valutazione media: " + String.format("%.1f", media));
+            pstmt.setString(1, testo);
+            pstmt.setInt(2, stelle);
+            pstmt.setNull(3, Types.VARCHAR);
+            pstmt.setInt(4, ris.getId_ristorante());
+            pstmt.setString(5, username);
+
+            pstmt.executeUpdate();
+
+            try (ResultSet generatedKeys = pstmt.getGeneratedKeys()) {
+                if (generatedKeys.next()) {
+                    int idGenerato = generatedKeys.getInt(1);
+                    nuova.setId_recensione(idGenerato); // Aggiorniamo l'oggetto Java
+                } else {
+                    throw new SQLException("La creazione della recensione è fallita, nessun ID ottenuto.");
                 }
             }
 
         } catch (SQLException e) {
-            System.out.println("Errore nel calcolo del riepilogo: " + e.getMessage());
+            System.out.println("Errore nell'inserimento della recensione: " + e.getMessage());
         }
     }
 
@@ -209,7 +216,7 @@ public class GestoreRecensione {
         String query = "SELECT * FROM Recensioni WHERE id_ristorante = ?";
 
         try (Connection conn = ConnessioneDatabase.getConnection();
-             PreparedStatement pstmt = conn.prepareStatement(query){
+             PreparedStatement pstmt = conn.prepareStatement(query)) {
 
             pstmt.setInt(1, ris.getId_ristorante());
             try (ResultSet rs = pstmt.executeQuery()) {
@@ -223,6 +230,7 @@ public class GestoreRecensione {
         }
         return recensioniPerRistoratore;
     }
+
     public boolean haLasciatoRecensione(Utente u, Ristorante ris) {
         String query = "SELECT 1 FROM Recensioni WHERE username = ? AND id_ristorante = ?";
         boolean haLasciato = false;
