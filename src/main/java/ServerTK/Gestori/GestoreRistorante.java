@@ -25,7 +25,7 @@ public class GestoreRistorante{
         List<Object> valoriParametri = new ArrayList<>();
 
         if(nome != null && !nome.trim().isEmpty()){
-            sql.append(" AND nome ILIKE = ?");
+            sql.append(" AND nome ILIKE ?");
             valoriParametri.add(nome);
         }
 
@@ -83,7 +83,7 @@ public class GestoreRistorante{
                             rs.getBoolean("delivery"),
                             rs.getBoolean("prenotazione"),
                             rs.getString("tipoCucina"),
-                            (Double) rs.getObject("stelle"),
+                            rs.getObject("stelle", Double.class),
                             rs.getString("usernameRistoratore"),
                             rs.getInt("id_citta")
                     );
@@ -158,7 +158,7 @@ public class GestoreRistorante{
                             rs.getBoolean("delivery"),
                             rs.getBoolean("prenotazione"),
                             rs.getString("tipoCucina"),
-                            (Double) rs.getObject("stelle"),
+                            rs.getObject("stelle", Double.class),
                             rs.getString("usernameRistoratore"),
                             rs.getInt("id_citta")
                     );
