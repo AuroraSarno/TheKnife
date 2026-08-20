@@ -1,4 +1,6 @@
 package ServerTK.RMI;
 
-public class TheKnifeInterface {
+import java.rmi.Remote;
+
+public interface TheKnifeInterface extends Remote {
 }
