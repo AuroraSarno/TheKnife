@@ -8,7 +8,7 @@ import java.rmi.registry.Registry;
 
 public class ServerTK {
     //metodo per avviare il server
-    public void main(String [] args) {
+    public static void main(String [] args) {
         try {
             GestoreCitta c = new GestoreCitta();
             GestoreUtenti u = new GestoreUtenti();
