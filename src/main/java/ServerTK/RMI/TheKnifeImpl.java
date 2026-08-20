@@ -2,8 +2,10 @@ package ServerTK.RMI;
 
 import ServerTK.Gestori.*;
 import ServerTK.Modelli.Citta;
+import ServerTK.Modelli.Preferito;
 import ServerTK.Modelli.Utente;
 import ServerTK.Modelli.Ristorante;
+import eccezioni.ListaVuotaException;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
@@ -55,6 +57,20 @@ public class TheKnifeImpl extends UnicastRemoteObject implements TheKnifeInterfa
     }
     public List<String> listaNazione() throws RemoteException {
         return gestoreCitta.listaNazione();
+    }
+
+    //IMPLEMENTAZIONE METODI GESTORE PREFERITI
+
+    public void aggiungiPreferiti(Utente utente, Ristorante ristorante) throws RemoteException, NullPointerException, IllegalArgumentException {
+        gestorePreferiti.aggiungiPreferiti(utente, ristorante);
+    }
+
+    public void cancellaPreferiti(Utente utente, Ristorante ristorante) throws RemoteException, NullPointerException, ListaVuotaException {
+        gestorePreferiti.cancellaPreferiti(utente, ristorante);
+    }
+
+    public List<Ristorante> visualizzaPreferiti(Utente utente) throws RemoteException, ListaVuotaException {
+        return gestorePreferiti.visualizzaPreferiti(utente);
     }
 }
 
