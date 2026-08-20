@@ -1,10 +1,7 @@
 package ServerTK.RMI;
 
-import ServerTK.Modelli.Preferito;
-import ServerTK.Modelli.Ristorante;
+import ServerTK.Modelli.*;
 
-import ServerTK.Modelli.Citta;
-import ServerTK.Modelli.Utente;
 import eccezioni.ListaVuotaException;
 
 import java.rmi.Remote;
@@ -13,6 +10,7 @@ import java.util.Date;
 import java.util.List;
 import java.rmi.RemoteException;
 import java.util.List;
+import java.util.Scanner;
 
 public interface TheKnifeInterface extends Remote {
 
@@ -38,4 +36,15 @@ public interface TheKnifeInterface extends Remote {
     public void cancellaPreferiti(Utente utente, Ristorante ristorante) throws RemoteException, NullPointerException, ListaVuotaException;
 
     public List<Ristorante> visualizzaPreferiti(Utente utente) throws RemoteException, ListaVuotaException;
+
+    //METODI GESTORE RECENSIONE
+    public List<Recensione> getRecensioni() throws RemoteException;
+    public void modificaRecensione(Recensione rec, String testoMod, int stelleMod, Utente utente) throws RemoteException, IllegalArgumentException;
+    public void rispondiRecensione(Recensione rec, String risposta) throws RemoteException, IllegalArgumentException;
+    public void inserisciRecensione(Ristorante ris, int id_recensione, String testo, int stelle, String username) throws RemoteException, IllegalArgumentException;
+    public void eliminaRecensione(Recensione rec, Utente utente) throws RemoteException, IllegalArgumentException;
+    public void visualizzaRiepilogo(Ristorante ris, String testo, int stelle) throws IllegalArgumentException, RemoteException;
+    public List<Recensione> visualizzaRecensioniperUtente(Utente u) throws IllegalArgumentException, RemoteException;
+    public List<Recensione> visualizzaRecensioniPerRistoratore(Ristorante ris) throws IllegalArgumentException, RemoteException;
+    public boolean haLasciatoRecensione(Utente u, Ristorante ris) throws IllegalArgumentException, RemoteException;
 }

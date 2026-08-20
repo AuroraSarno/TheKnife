@@ -1,10 +1,7 @@
 package ServerTK.RMI;
 
 import ServerTK.Gestori.*;
-import ServerTK.Modelli.Citta;
-import ServerTK.Modelli.Preferito;
-import ServerTK.Modelli.Utente;
-import ServerTK.Modelli.Ristorante;
+import ServerTK.Modelli.*;
 import eccezioni.ListaVuotaException;
 
 import java.rmi.RemoteException;
@@ -72,5 +69,44 @@ public class TheKnifeImpl extends UnicastRemoteObject implements TheKnifeInterfa
     public List<Ristorante> visualizzaPreferiti(Utente utente) throws RemoteException, ListaVuotaException {
         return gestorePreferiti.visualizzaPreferiti(utente);
     }
+
+    // IMPLEMENTAZIONE METODI GESTORE RECENSIONE
+
+    public List<Recensione> getRecensioni() throws RemoteException {
+        return gestoreRecensione.getRecensioni();
+    }
+
+    public void modificaRecensione(Recensione rec, String testoMod, int stelleMod, Utente utente) throws RemoteException, IllegalArgumentException {
+        gestoreRecensione.modificaRecensione(rec, testoMod, stelleMod, utente);
+    }
+
+    public void rispondiRecensione(Recensione rec, String risposta) throws RemoteException, IllegalArgumentException {
+        gestoreRecensione.rispondiRecensione(rec, risposta);
+    }
+
+    public void inserisciRecensione(Ristorante ris, int id_recensione, String testo, int stelle, String username) throws RemoteException, IllegalArgumentException {
+        gestoreRecensione.inserisciRecensione(ris, id_recensione, testo, stelle, username);
+    }
+
+    public void eliminaRecensione(Recensione rec, Utente utente) throws RemoteException, IllegalArgumentException {
+        gestoreRecensione.eliminaRecensione(rec, utente);
+    }
+
+    public void visualizzaRiepilogo(Ristorante ris, String testo, int stelle) throws IllegalArgumentException, RemoteException {
+        gestoreRecensione.visualizzaRiepilogo(ris, testo, stelle);
+    }
+
+    public List<Recensione> visualizzaRecensioniperUtente(Utente u) throws IllegalArgumentException, RemoteException {
+        return gestoreRecensione.visualizzaRecensioniperUtente(u);
+    }
+
+    public List<Recensione> visualizzaRecensioniPerRistoratore(Ristorante ris) throws IllegalArgumentException, RemoteException {
+        return gestoreRecensione.visualizzaRecensioniPerRistoratore(ris);
+    }
+
+    public boolean haLasciatoRecensione(Utente u, Ristorante ris) throws IllegalArgumentException, RemoteException {
+        return gestoreRecensione.haLasciatoRecensione(u, ris);
+    }
+
 }
 

@@ -13,14 +13,14 @@ public class GestoreRecensione {
     }
 
     private Recensione estraiRec(ResultSet rs) throws SQLException {
-        int idRecensione = rs.getInt("id_recensione");
+        int id_recensione = rs.getInt("id_recensione");
         int id_ristorante = rs.getInt("id_ristorante");
         String testo = rs.getString("testo");
         int stelle = rs.getInt("stelle");
         String rispostaRecensione = rs.getString("risposta_recensione");
         String username = rs.getString("username");
 
-        Recensione rec = new Recensione(int id_recensione, id_ristorante, testo, stelle, rispostaRecensione, username);
+        Recensione rec = new Recensione (id_recensione, id_ristorante, testo, stelle, rispostaRecensione, username);
         rec.setId_recensione(id_recensione);
         return rec;
     }
@@ -108,7 +108,7 @@ public class GestoreRecensione {
         String insertQuery = "INSERT INTO Recensioni (id_recensione, testo, stelle, risposta, id_ristorante, username)" +
                 " VALUES (?, ?, ?, ?, ?, ?)";
 
-        Recensione nuova = new Recensione(ris.getId_ristorante(), testo, stelle, null, username);
+        Recensione nuova = new Recensione(id_recensione, ris.getId_ristorante(), testo, stelle, null, username);
 
         try (Connection conn = ConnessioneDatabase.getConnection();
 
@@ -137,7 +137,7 @@ public class GestoreRecensione {
         }
     }
 
-    public void eliminaRecensione(Recensione rec) throws IllegalArgumentException {
+    public void eliminaRecensione(Recensione rec, Utente utente) throws IllegalArgumentException {
         String query = "DELETE FROM Recensioni WHERE id_recensione = ?";
 
         try (Connection conn = ConnessioneDatabase.getConnection();
@@ -155,35 +155,30 @@ public class GestoreRecensione {
         }
     }
 
-    public void visualizzaRiepilogo(Ristorante ris, String testo, int stelle, String username) throws IllegalArgumentException {
-        String insertQuery = "INSERT INTO Recensioni (testo, stelle, risposta, id_ristorante, username) " +
-                "VALUES (?, ?, ?, ?, ?)";
-
-        Recensione nuova = new Recensione(ris.getId_ristorante(), testo, stelle, null, username);
+    public void visualizzaRiepilogo(Ristorante ris, String testo, int stelle) {
+        String sql = "SELECT COUNT(*) AS numero_recensioni, AVG(stelle) AS media_stelle " +
+                "FROM Recensioni WHERE id_ristorante = ?";
 
         try (Connection conn = ConnessioneDatabase.getConnection();
-             // 2. Diciamo al PreparedStatement di restituirci le chiavi generate automaticamente
-             PreparedStatement pstmt = conn.prepareStatement(insertQuery, Statement.RETURN_GENERATED_KEYS)) {
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
 
-            pstmt.setString(1, testo);
-            pstmt.setInt(2, stelle);
-            pstmt.setNull(3, Types.VARCHAR);
-            pstmt.setInt(4, ris.getId_ristorante());
-            pstmt.setString(5, username);
+            // Inseriamo l'ID del ristorante al posto del punto interrogativo
+            pstmt.setInt(1, ris.getId_ristorante());
 
-            pstmt.executeUpdate();
+            // Eseguiamo la query di lettura
+            try (ResultSet rs = pstmt.executeQuery()) {
+                if (rs.next()) {
+                    int numeroRecensioni = rs.getInt("numero_recensioni");
+                    double mediaStelle = rs.getDouble("media_stelle");
 
-            try (ResultSet generatedKeys = pstmt.getGeneratedKeys()) {
-                if (generatedKeys.next()) {
-                    int idGenerato = generatedKeys.getInt(1);
-                    nuova.setId_recensione(idGenerato); // Aggiorniamo l'oggetto Java
-                } else {
-                    throw new SQLException("La creazione della recensione è fallita, nessun ID ottenuto.");
+                    System.out.println("--- Riepilogo Recensioni ---");
+                    System.out.println("Totale recensioni: " + numeroRecensioni);
+                    System.out.println("Media stelle: " + mediaStelle);
                 }
             }
 
         } catch (SQLException e) {
-            System.out.println("Errore nell'inserimento della recensione: " + e.getMessage());
+            System.out.println("Errore nel calcolo del riepilogo: " + e.getMessage());
         }
     }
 
