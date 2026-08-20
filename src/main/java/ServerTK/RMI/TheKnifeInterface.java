@@ -8,6 +8,7 @@ import java.util.List;
 
 public interface TheKnifeInterface extends Remote {
 
+
     public List<Ristorante> cercaRistoranti(String nome, String tipoCucina, Double prezzoMin, Double prezzoMax,
                                             Boolean delivery, Boolean prenotazione, Double stelle, Integer idCitta) throws RemoteException;
 
