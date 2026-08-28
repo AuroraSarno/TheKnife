@@ -1,11 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Hyperlink?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.ToggleButton?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.StackPane?>
@@ -13,7 +18,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: #618569;" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: #618569;" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ControllerLogin">
    <center>
       <VBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="343.0" prefWidth="560.0" spacing="30.0" style="-fx-background-color: #fffff0; -fx-background-radius: 15;" BorderPane.alignment="CENTER">
          <children>
@@ -45,9 +50,15 @@
                   </Text>
                   <StackPane prefHeight="150.0" prefWidth="386.0">
                      <children>
-                        <TextField prefHeight="55.0" prefWidth="386.0" />
-                        <PasswordField prefHeight="55.0" prefWidth="386.0" />
-                        <ToggleButton minWidth="0.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="0.0" style="-fx-background-color: #fffff0;" StackPane.alignment="CENTER_RIGHT">
+                        <TextField fx:id="campoInChiaro" prefHeight="55.0" prefWidth="386.0" />
+                        <PasswordField fx:id="campoSegreto" prefHeight="55.0" prefWidth="316.0" />
+                        <ToggleButton fx:id="btnOcchio" minWidth="34.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="34.0" StackPane.alignment="CENTER_RIGHT">
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                           <graphic>
+                              <ImageView fx:id="iconaOcchio" fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true" />
+                           </graphic>
                            <StackPane.margin>
                               <Insets right="5.0" />
                            </StackPane.margin>
@@ -71,15 +82,40 @@
             <Insets bottom="10.0" left="20.0" right="20.0" top="20.0" />
          </padding></VBox>
    </center>
+   <bottom>
+      <Button alignment="CENTER" mnemonicParsing="false" prefHeight="67.0" prefWidth="200.0" style="-fx-background-radius: 10; -fx-background-color: #fffff0;" text="Login" textAlignment="CENTER" textFill="#618569" BorderPane.alignment="CENTER">
+         <font>
+            <Font name="Trebuchet MS" size="22.0" />
+         </font>
+         <BorderPane.margin>
+            <Insets bottom="100.0" />
+         </BorderPane.margin>
+      </Button>
+   </bottom>
    <top>
-      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+      <AnchorPane prefHeight="108.0" prefWidth="1280.0" BorderPane.alignment="CENTER">
          <children>
-            <Label text="The Knife - Login" textFill="WHITE">
+            <Label layoutX="513.0" layoutY="35.0" text="The Knife - Login" textFill="WHITE">
                <font>
                   <Font name="Georgia" size="34.0" />
                </font>
             </Label>
+            <Button layoutX="41.0" layoutY="35.0" mnemonicParsing="false" style="-fx-background-color: transoarent;">
+               <graphic>
+                  <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../immagini/dashicons-arrow-left-alt.png" />
+                     </image>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </ImageView>
+               </graphic>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
          </children>
-      </HBox>
+      </AnchorPane>
    </top>
 </BorderPane>
