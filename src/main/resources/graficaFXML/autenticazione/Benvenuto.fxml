@@ -1,14 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="CONTROLLER_NAME"
-            prefHeight="400.0" prefWidth="600.0">
-
+<AnchorPane fx:id="paneSfondo" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-image: url('immagini/Home.jpeg'); -fx-background-size: cover;" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ControllerBenvenuto">
+   <children>
+      <Label prefHeight="67.0" prefWidth="280.0" text="The Knife" textFill="WHITE" AnchorPane.leftAnchor="60.0">
+         <font>
+            <Font name="Georgia Bold" size="40.0" />
+         </font>
+      </Label>
+      <HBox fx:id="hboxBottoni" alignment="CENTER" prefHeight="100.0" prefWidth="441.0" spacing="50.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Button fx:id="btnLogin" mnemonicParsing="false" prefHeight="47.0" prefWidth="193.0" text="Login">
+               <font>
+                  <Font name="Trebuchet MS" size="14.0" />
+               </font>
+            </Button>
+            <Button fx:id="btnRegistrazione" mnemonicParsing="false" prefHeight="47.0" prefWidth="206.0" text="Registrazione">
+               <font>
+                  <Font name="Trebuchet MS" size="14.0" />
+               </font>
+            </Button>
+            <Button fx:id="btnGuest" mnemonicParsing="false" prefHeight="47.0" prefWidth="230.0" text="Accedi come guest">
+               <font>
+                  <Font name="Trebuchet MS" size="14.0" />
+               </font>
+            </Button>
+         </children>
+      </HBox>
+   </children>
 </AnchorPane>

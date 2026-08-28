@@ -1,14 +1,85 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleButton?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="CONTROLLER_NAME"
-            prefHeight="400.0" prefWidth="600.0">
-
-</AnchorPane>
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: #618569;" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1">
+   <center>
+      <VBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="343.0" prefWidth="560.0" spacing="30.0" style="-fx-background-color: #fffff0; -fx-background-radius: 15;" BorderPane.alignment="CENTER">
+         <children>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="50.0">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Username">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Text>
+                  <TextField prefHeight="55.0" prefWidth="386.0">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </TextField>
+               </children>
+            </HBox>
+            <Text fill="#ae1919" strokeType="OUTSIDE" strokeWidth="0.0" text="errore" textAlignment="CENTER" wrappingWidth="500.80335426330566">
+               <VBox.margin>
+                  <Insets top="-40.0" />
+               </VBox.margin>
+            </Text>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="50.0">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Password">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Text>
+                  <StackPane prefHeight="150.0" prefWidth="386.0">
+                     <children>
+                        <TextField prefHeight="55.0" prefWidth="386.0" />
+                        <PasswordField prefHeight="55.0" prefWidth="386.0" />
+                        <ToggleButton minWidth="0.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="0.0" style="-fx-background-color: #fffff0;" StackPane.alignment="CENTER_RIGHT">
+                           <StackPane.margin>
+                              <Insets right="5.0" />
+                           </StackPane.margin>
+                        </ToggleButton>
+                     </children>
+                  </StackPane>
+               </children>
+            </HBox>
+            <Text fill="#ae1919" layoutX="10.0" layoutY="90.0" strokeType="OUTSIDE" strokeWidth="0.0" text="errore" textAlignment="CENTER" wrappingWidth="500.80335426330566">
+               <VBox.margin>
+                  <Insets top="-40.0" />
+               </VBox.margin>
+            </Text>
+            <Hyperlink alignment="CENTER" prefHeight="33.0" prefWidth="696.0" text="Non hai ancora un account? Registrati" textFill="#618569">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Hyperlink>
+         </children>
+         <padding>
+            <Insets bottom="10.0" left="20.0" right="20.0" top="20.0" />
+         </padding></VBox>
+   </center>
+   <top>
+      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label text="The Knife - Login" textFill="WHITE">
+               <font>
+                  <Font name="Georgia" size="34.0" />
+               </font>
+            </Label>
+         </children>
+      </HBox>
+   </top>
+</BorderPane>
