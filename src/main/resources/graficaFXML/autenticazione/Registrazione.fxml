@@ -19,9 +19,9 @@
    <content>
       <VBox alignment="CENTER" minWidth="-Infinity" prefHeight="600.0" prefWidth="150.0" spacing="20.0" style="-fx-background-color: #618569;">
          <children>
-            <HBox fx:id="btnIndietro" prefHeight="100.0" prefWidth="200.0">
+            <HBox fx:id="Hbox" prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <Button fx:id="btnIndietro" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" style="-fx-background-color: transparent; -fx-font-weight: bold; -fx-cursor: hand; -fx-font-size: 25-px;" text="← Indietro">
+                  <Button fx:id="btnIndietro" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" style="-fx-background-color: transparent; -fx-font-weight: bold; -fx-cursor: hand; -fx-font-size: 25px;" text="← Indietro">
                      <font>
                         <Font size="25.0" />
                      </font>
