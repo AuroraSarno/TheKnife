@@ -11,22 +11,17 @@
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<ScrollPane fitToHeight="true" fitToWidth="true" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: #618569; -fx-border-color: transparent; -fx-padding: 0;" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1">
+<ScrollPane fitToHeight="true" fitToWidth="true" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: #618569; -fx-border-color: transparent; -fx-padding: 0;" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.RegistrazioneController">
    <content>
       <VBox alignment="CENTER" minWidth="-Infinity" prefHeight="600.0" prefWidth="150.0" spacing="20.0" style="-fx-background-color: #618569;">
          <children>
             <HBox fx:id="Hbox" prefHeight="100.0" prefWidth="200.0">
-               <children>
-                  <Button fx:id="btnIndietro" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" style="-fx-background-color: transparent; -fx-font-weight: bold; -fx-cursor: hand; -fx-font-size: 25px;" text="← Indietro">
-                     <font>
-                        <Font size="25.0" />
-                     </font>
-                  </Button>
-               </children>
                <VBox.margin>
                   <Insets left="20.0" top="20.0" />
                </VBox.margin>
@@ -36,10 +31,22 @@
                   <Font name="Georgia" size="30.0" />
                </font>
             </Label>
+            <Button fx:id="btnIndietro" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleIndietro" style="-fx-background-color: transparent; -fx-font-weight: bold; -fx-cursor: hand; -fx-font-size: 25px;">
+               <font>
+                  <Font size="25.0" />
+               </font>
+               <graphic>
+                  <ImageView fitWidth="30.0" pickOnBounds="true" preserveRatio="true" translateX="-600.0">
+                     <image>
+                        <Image url="@../../immagini/dashicons-arrow-left-alt.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
             <VBox alignment="CENTER" maxWidth="700.0" spacing="90.0" style="-fx-background-color: ivory; -fx-background-radius: 40; -fx-border-color: #2d4033; -fx-border-width: 15; -fx-border-radius: 15;">
                <children>
                   <HBox prefHeight="100.0" prefWidth="200.0" />
-                  <Hyperlink fx:id="linkLogin" text="Sei già registrato? clicca qui" textFill="#618569">
+                  <Hyperlink fx:id="linkLogin" onAction="#handleLogin" text="Sei già registrato? clicca qui" textFill="#618569">
                      <font>
                         <Font size="25.0" />
                      </font>
@@ -51,7 +58,7 @@
                               <Font name="Georgia" size="25.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="txtUsername" minHeight="40.0" prefWidth="300.0">
+                        <TextField fx:id="txtUsername" minHeight="40.0" onAction="#handleUsername" prefWidth="300.0">
                            <font>
                               <Font size="18.0" />
                            </font>
@@ -68,7 +75,7 @@
                               <Font name="Georgia" size="25.0" />
                            </font>
                         </Label>
-                        <PasswordField fx:id="txtField" minHeight="40.0" prefWidth="300.0">
+                        <PasswordField fx:id="txtPassword" minHeight="40.0" onAction="#handlePassword" prefWidth="300.0">
                            <font>
                               <Font size="18.0" />
                            </font>
@@ -85,7 +92,7 @@
                               <Font name="Georgia" size="25.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="txtNome" minHeight="40.0" prefWidth="300.0">
+                        <TextField fx:id="txtNome" minHeight="40.0" onAction="#handleNome" prefWidth="300.0">
                            <font>
                               <Font size="18.0" />
                            </font>
@@ -102,7 +109,7 @@
                               <Font name="Georgia" size="25.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="txtCognome" minHeight="40.0" prefWidth="300.0">
+                        <TextField fx:id="txtCognome" minHeight="40.0" onAction="#handleCognome" prefWidth="300.0">
                            <font>
                               <Font size="18.0" />
                            </font>
@@ -119,7 +126,7 @@
                               <Font name="Georgia" size="25.0" />
                            </font>
                         </Label>
-                        <DatePicker fx:id="dateBirthday" minHeight="40.0" prefWidth="300.0" />
+                        <DatePicker fx:id="dateBirthday" minHeight="40.0" onAction="#handleData" prefWidth="300.0" />
                      </children>
                      <VBox.margin>
                         <Insets top="30.0" />
@@ -132,7 +139,7 @@
                               <Font name="Georgia" size="25.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="txtDomicilio" minHeight="40.0" prefWidth="300.0">
+                        <TextField fx:id="txtDomicilio" minHeight="40.0" onAction="#handleDomicilio" prefWidth="300.0">
                            <font>
                               <Font size="18.0" />
                            </font>
@@ -149,7 +156,7 @@
                               <Font name="Georgia" size="25.0" />
                            </font>
                         </Label>
-                        <RadioButton fx:id="btnRistoratore" mnemonicParsing="false" text="Ristoratore">
+                        <RadioButton fx:id="btnRistoratore" mnemonicParsing="false" onAction="#handleRistoratore" text="Ristoratore">
                            <font>
                               <Font name="Georgia" size="18.0" />
                            </font>
@@ -160,7 +167,7 @@
                               <Cursor fx:constant="HAND" />
                            </cursor>
                         </RadioButton>
-                        <RadioButton fx:id="btnCliente" layoutX="160.0" layoutY="10.0" mnemonicParsing="false" text="Cliente" toggleGroup="$SceltaRuolo">
+                        <RadioButton fx:id="btnCliente" layoutX="160.0" layoutY="10.0" mnemonicParsing="false" onAction="#handleCliente" text="Cliente" toggleGroup="$SceltaRuolo">
                            <font>
                               <Font name="Georgia" size="18.0" />
                            </font>
@@ -175,7 +182,7 @@
                   </HBox>
                   <HBox alignment="CENTER" layoutX="25.0" layoutY="1213.0" prefHeight="120.0" spacing="100.0">
                      <children>
-                        <Button mnemonicParsing="false" style="-fx-background-color: transparent;" text="Registrati!" textFill="#618569">
+                        <Button mnemonicParsing="false" onAction="#handleRegistrati" style="-fx-background-radius: 30;" text="Registrati" textFill="#618569">
                            <font>
                               <Font size="25.0" />
                            </font>
