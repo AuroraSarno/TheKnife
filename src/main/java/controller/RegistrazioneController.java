@@ -2,7 +2,12 @@ package controller;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.stage.Stage;
 
 import java.time.LocalDate;
 
@@ -49,23 +54,21 @@ public class RegistrazioneController {
     private void handleIndietro(ActionEvent event) {
         try {
             //Carica il file di benvenuto
-            javafx.fxml.FXMLLoader loader = new javafx.fxml.FXMLLoader(getClass().getResource("Benvenuto.fxml"));
-            javafx.scene.Parent root = loader.load();
+            FXMLLoader loader = new javafx.fxml.FXMLLoader(getClass().getResource("/graficaFXML/autenticazione/Benvenuto.fxml"));
+            Parent root = loader.load();
 
             //Crea la nuova Scena con le stesse dimensioni della finestra
-            javafx.scene.Scene homeScene = new javafx.scene.Scene(root, 1280, 720);
+            Scene homeScene = new javafx.scene.Scene(root, 1280, 720);
 
             //Recupera la finestra partendo dal bottone che è stato cliccato
-            javafx.scene.Node source = (javafx.scene.Node) event.getSource();
-            javafx.stage.Stage stage = (javafx.stage.Stage) source.getScene().getWindow();
+            Node source = (javafx.scene.Node) event.getSource();
+            Stage stage = (javafx.stage.Stage) source.getScene().getWindow();
 
             //Cambia la scena e mostrala
             stage.setScene(homeScene);
             stage.show();
 
         } catch (Exception e) {
-            // Se qualcosa va storto (es. hai sbagliato il nome del file fxml),
-            // questo stamperà l'errore nella console per aiutarti a capire il problema
             System.out.println("Errore nel caricamento della pagina: " + e.getMessage());
             e.printStackTrace();
         }
@@ -75,8 +78,29 @@ public class RegistrazioneController {
 
     @FXML
     private void handleLogin(ActionEvent event) {
-        System.out.println("Vado alla schermata di Login...");
-        // Qui metterai il codice per aprire il login
+        try {
+            //Carica il file di login
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/graficaFXML/autenticazione/Login.fxml"));
+            Parent root = loader.load();
+
+            //Crea la nuova Scena con le stesse dimensioni della finestra
+            Scene homeScene = new javafx.scene.Scene(root, 1280, 720);
+
+            //Recupera la finestra partendo dal bottone che è stato cliccato
+            Node source = (javafx.scene.Node) event.getSource();
+            Stage stage = (javafx.stage.Stage) source.getScene().getWindow();
+
+            //Cambia la scena e mostrala
+            stage.setScene(homeScene);
+            stage.show();
+
+        } catch (Exception e) {
+            System.out.println("Errore nel caricamento della pagina: " + e.getMessage());
+            e.printStackTrace();
+        }
+
+
+
     }
 
     @FXML
@@ -85,7 +109,7 @@ public class RegistrazioneController {
         // Qui leggerai tutti i txtUsername.getText(), ecc. per salvare nel database
     }
 
-    //Metodi per i fields
+    //Metodi per i fields (passare dall'uno all'altro con invio)
 
     @FXML
     private void handleUsername(ActionEvent event) {
