@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<HBox minHeight="600.0" minWidth="900.0" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.GuestController">
+   <children>
+
+      <!-- Pannello sinistro: solo sfondo e titolo, senza bottoni -->
+      <AnchorPane minWidth="358.0" prefWidth="358.0" maxWidth="358.0" HBox.hgrow="NEVER" style="-fx-background-image: url('/immagini/coltelloForchettaSfondo.jpg'); -fx-background-size: cover; -fx-background-position: center;">
+         <children>
+            <Label text="The Knife" textFill="WHITE" AnchorPane.leftAnchor="49.0" AnchorPane.topAnchor="49.0">
+               <font>
+                  <Font name="Georgia" size="50.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+
+      <!-- Pannello destro: occupa tutto lo spazio rimanente -->
+      <AnchorPane minWidth="0.0" prefHeight="720.0" prefWidth="922.0" HBox.hgrow="ALWAYS">
+         <children>
+
+            <!-- Barra di ricerca -->
+            <TextField fx:id="ricercaRistoranteField" prefHeight="34.0" promptText="Ricerca ristorante ..." AnchorPane.leftAnchor="28.0" AnchorPane.rightAnchor="32.0" AnchorPane.topAnchor="26.0">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </TextField>
+
+            <!-- Filtri avanzati: lasciano spazio in basso ai bottoni Login/Accedi -->
+            <TitledPane animated="false" prefWidth="332.0" text="Filtri avanzati" AnchorPane.bottomAnchor="130.0" AnchorPane.leftAnchor="28.0" AnchorPane.topAnchor="73.0">
+               <content>
+                  <VBox spacing="6.0">
+                     <padding>
+                        <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+                     </padding>
+                     <children>
+                        <Label text="Tipo di cucina:" textFill="#618569" />
+                        <ComboBox fx:id="tipoCucinaField" maxWidth="Infinity" />
+
+                        <HBox spacing="10.0">
+                           <children>
+                              <VBox spacing="4.0" HBox.hgrow="ALWAYS">
+                                 <children>
+                                    <Label text="Prezzo min (€):" textFill="#618569" />
+                                    <TextField fx:id="prezzoMin" maxWidth="Infinity" />
+                                 </children>
+                              </VBox>
+                              <VBox spacing="4.0" HBox.hgrow="ALWAYS">
+                                 <children>
+                                    <Label text="Prezzo max (€):" textFill="#618569" />
+                                    <TextField fx:id="prezzoMax" maxWidth="Infinity" />
+                                 </children>
+                              </VBox>
+                           </children>
+                           <VBox.margin>
+                              <Insets top="4.0" />
+                           </VBox.margin>
+                        </HBox>
+
+                        <CheckBox fx:id="deliveryField" mnemonicParsing="false" text="Delivery" textFill="#618569">
+                           <VBox.margin>
+                              <Insets top="6.0" />
+                           </VBox.margin>
+                        </CheckBox>
+                        <CheckBox fx:id="prenotazioneField" mnemonicParsing="false" text="Prenotazione" textFill="#618569" />
+
+                        <Label text="Stelle:" textFill="#618569">
+                           <VBox.margin>
+                              <Insets top="4.0" />
+                           </VBox.margin>
+                        </Label>
+                        <ComboBox fx:id="stelleField" maxWidth="Infinity" />
+
+                        <Label text="Inserisci città:" textFill="#618569">
+                           <VBox.margin>
+                              <Insets top="4.0" />
+                           </VBox.margin>
+                        </Label>
+                        <ComboBox fx:id="inserisciCittaField" editable="true" maxWidth="Infinity" />
+                     </children>
+                  </VBox>
+               </content>
+            </TitledPane>
+
+            <!-- Lista ristoranti -->
+            <ListView fx:id="listViewRistoranti" AnchorPane.bottomAnchor="130.0" AnchorPane.leftAnchor="375.0" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="73.0" />
+
+            <!-- Login / Accedi: i bottoni si dividono la larghezza disponibile -->
+            <HBox alignment="CENTER" spacing="50.0" AnchorPane.bottomAnchor="25.0" AnchorPane.leftAnchor="375.0" AnchorPane.rightAnchor="30.0">
+               <children>
+                  <Button maxWidth="Infinity" mnemonicParsing="false" onAction="#apriLogin" prefHeight="70.0" prefWidth="216.0" style="-fx-background-color: #618569;" text="Login" textFill="WHITE" HBox.hgrow="ALWAYS">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Button>
+                  <Button maxWidth="Infinity" mnemonicParsing="false" onAction="#apriAccedi" prefHeight="70.0" prefWidth="216.0" style="-fx-background-color: #618569;" text="Accedi" textFill="WHITE" HBox.hgrow="ALWAYS">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Button>
+               </children>
+            </HBox>
+
+         </children>
+      </AnchorPane>
+   </children>
+</HBox>
