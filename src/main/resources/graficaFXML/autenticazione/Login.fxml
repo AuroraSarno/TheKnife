@@ -10,7 +10,6 @@
 <?import javafx.scene.control.ToggleButton?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.StackPane?>
@@ -18,7 +17,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: #618569;" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ControllerLogin">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" style="-fx-background-color: #618569;" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ControllerLogin">
    <center>
       <VBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="343.0" prefWidth="560.0" spacing="30.0" style="-fx-background-color: #fffff0; -fx-background-radius: 15;" BorderPane.alignment="CENTER">
          <children>
@@ -29,16 +28,16 @@
                         <Font size="16.0" />
                      </font>
                   </Text>
-                  <TextField prefHeight="55.0" prefWidth="386.0">
+                  <TextField fx:id="campoUsername" prefHeight="55.0" prefWidth="386.0">
                      <font>
                         <Font size="14.0" />
                      </font>
                   </TextField>
                </children>
             </HBox>
-            <Text fill="#ae1919" strokeType="OUTSIDE" strokeWidth="0.0" text="errore" textAlignment="CENTER" wrappingWidth="500.80335426330566">
+            <Text fx:id="erroreUsername" fill="#ae1919" strokeType="OUTSIDE" strokeWidth="0.0" text="Username o password errati, riprovare" textAlignment="CENTER">
                <VBox.margin>
-                  <Insets top="-40.0" />
+                  <Insets left="200.0" top="-40.0" />
                </VBox.margin>
             </Text>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="50.0">
@@ -67,9 +66,9 @@
                   </StackPane>
                </children>
             </HBox>
-            <Text fill="#ae1919" layoutX="10.0" layoutY="90.0" strokeType="OUTSIDE" strokeWidth="0.0" text="errore" textAlignment="CENTER" wrappingWidth="500.80335426330566">
+            <Text fx:id="errorePassword" fill="#ae1919" layoutX="10.0" layoutY="90.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Username o password errati, riprovare" textAlignment="CENTER">
                <VBox.margin>
-                  <Insets top="-40.0" />
+                  <Insets left="200.0" top="-40.0" />
                </VBox.margin>
             </Text>
             <Hyperlink alignment="CENTER" prefHeight="33.0" prefWidth="696.0" text="Non hai ancora un account? Registrati" textFill="#618569">
@@ -83,7 +82,7 @@
          </padding></VBox>
    </center>
    <bottom>
-      <Button alignment="CENTER" mnemonicParsing="false" prefHeight="67.0" prefWidth="200.0" style="-fx-background-radius: 10; -fx-background-color: #fffff0;" text="Login" textAlignment="CENTER" textFill="#618569" BorderPane.alignment="CENTER">
+      <Button fx:id="btnLogin" alignment="CENTER" mnemonicParsing="false" onAction="#actionLogin" prefHeight="67.0" prefWidth="200.0" style="-fx-background-radius: 10; -fx-background-color: #fffff0;" text="Login" textAlignment="CENTER" textFill="#618569" BorderPane.alignment="CENTER">
          <font>
             <Font name="Trebuchet MS" size="22.0" />
          </font>
@@ -93,14 +92,16 @@
       </Button>
    </bottom>
    <top>
-      <AnchorPane prefHeight="108.0" prefWidth="1280.0" BorderPane.alignment="CENTER">
-         <children>
-            <Label layoutX="513.0" layoutY="35.0" text="The Knife - Login" textFill="WHITE">
+      <BorderPane BorderPane.alignment="CENTER">
+         <center>
+            <Label text="The Knife - Login" textFill="WHITE" BorderPane.alignment="CENTER">
                <font>
                   <Font name="Georgia" size="34.0" />
                </font>
             </Label>
-            <Button layoutX="41.0" layoutY="35.0" mnemonicParsing="false" style="-fx-background-color: transoarent;">
+         </center>
+         <left>
+            <Button fx:id="btnIndietro" mnemonicParsing="false" onAction="#actionIndietro" style="-fx-background-color: transparent;" BorderPane.alignment="CENTER">
                <graphic>
                   <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -114,8 +115,14 @@
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
+               <BorderPane.margin>
+                  <Insets left="30.0" />
+               </BorderPane.margin>
             </Button>
-         </children>
-      </AnchorPane>
+         </left>
+         <BorderPane.margin>
+            <Insets top="10.0" />
+         </BorderPane.margin>
+      </BorderPane>
    </top>
 </BorderPane>

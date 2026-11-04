@@ -1,14 +1,235 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Slider?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="CONTROLLER_NAME"
-            prefHeight="400.0" prefWidth="600.0">
-
-</AnchorPane>
+<ScrollPane fitToHeight="true" fitToWidth="true" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: #618569; -fx-border-color: transparent; -fx-padding: 0;" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.PopupAggiungiRistoranteController">
+    <content>
+        <VBox alignment="CENTER" minWidth="-Infinity" prefHeight="600.0" prefWidth="150.0" spacing="20.0" style="-fx-background-color: #618569;">
+            <children>
+                <HBox fx:id="Hbox" prefHeight="100.0" prefWidth="200.0">
+                    <VBox.margin>
+                        <Insets left="20.0" top="20.0" />
+                    </VBox.margin>
+               <children>
+                  <Button mnemonicParsing="false" style="-fx-background-color: trasparent;">
+                     <graphic>
+                        <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../immagini/dashicons-arrow-left-alt.png" />
+                           </image>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </ImageView>
+                     </graphic>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+               </children>
+                </HBox>
+                <Label text="Aggiunti ristorante" textFill="WHITE">
+                    <font>
+                        <Font name="Georgia" size="30.0" />
+                    </font>
+                </Label>
+                <VBox alignment="CENTER" maxWidth="700.0" spacing="90.0" style="-fx-background-color: ivory; -fx-background-radius: 40; -fx-border-color: #2d4033; -fx-border-width: 15; -fx-border-radius: 15;">
+                    <children>
+                        <HBox alignment="CENTER" prefHeight="120.0" spacing="100.0">
+                            <children>
+                                <Label prefWidth="180.0" text="Nome">
+                                    <font>
+                                        <Font name="Georgia" size="25.0" />
+                                    </font>
+                                </Label>
+                                <TextField fx:id="txtUsername" minHeight="40.0" prefWidth="300.0">
+                                    <font>
+                                        <Font size="18.0" />
+                                    </font>
+                                </TextField>
+                            </children>
+                            <VBox.margin>
+                                <Insets top="30.0" />
+                            </VBox.margin>
+                        </HBox>
+                        <HBox alignment="CENTER" prefHeight="120.0" spacing="100.0">
+                            <children>
+                                <Label prefWidth="180.0" text="Indirizzo">
+                                    <font>
+                                        <Font name="Georgia" size="25.0" />
+                                    </font>
+                                </Label>
+                        <TextField fx:id="txtNome1" minHeight="40.0" prefWidth="300.0">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </TextField>
+                            </children>
+                            <VBox.margin>
+                                <Insets top="30.0" />
+                            </VBox.margin>
+                        </HBox>
+                        <HBox alignment="CENTER" prefHeight="120.0" spacing="100.0">
+                            <children>
+                                <Label prefWidth="180.0" text="Latitudine">
+                                    <font>
+                                        <Font name="Georgia" size="25.0" />
+                                    </font>
+                                </Label>
+                                <TextField fx:id="txtNome" minHeight="40.0" prefWidth="300.0">
+                                    <font>
+                                        <Font size="18.0" />
+                                    </font>
+                                </TextField>
+                            </children>
+                            <VBox.margin>
+                                <Insets top="30.0" />
+                            </VBox.margin>
+                        </HBox>
+                        <HBox alignment="CENTER" prefHeight="120.0" spacing="100.0">
+                            <children>
+                                <Label prefWidth="180.0" text="Longitudine">
+                                    <font>
+                                        <Font name="Georgia" size="25.0" />
+                                    </font>
+                                </Label>
+                                <TextField fx:id="txtCognome" minHeight="40.0" prefWidth="300.0">
+                                    <font>
+                                        <Font size="18.0" />
+                                    </font>
+                                </TextField>
+                            </children>
+                            <VBox.margin>
+                                <Insets top="30.0" />
+                            </VBox.margin>
+                        </HBox>
+                        <HBox alignment="CENTER" prefHeight="120.0" spacing="100.0">
+                            <children>
+                                <Label prefWidth="180.0" text="Prezzo medio">
+                                    <font>
+                                        <Font name="Georgia" size="25.0" />
+                                    </font>
+                                </Label>
+                        <Slider max="200.0" minHeight="40.0" prefWidth="300.0" showTickLabels="true" showTickMarks="true" />
+                            </children>
+                            <VBox.margin>
+                                <Insets top="30.0" />
+                            </VBox.margin>
+                        </HBox>
+                        <HBox alignment="CENTER" prefHeight="120.0" spacing="100.0">
+                            <children>
+                                <Label prefWidth="180.0" text="Delivery">
+                                    <font>
+                                        <Font name="Georgia" size="25.0" />
+                                    </font>
+                                </Label>
+                        <RadioButton fx:id="btnRistoratore1" mnemonicParsing="false" text="Si">
+                           <font>
+                              <Font name="Georgia" size="18.0" />
+                           </font>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                           <toggleGroup>
+                              <ToggleGroup fx:id="SceltaDelivery" />
+                           </toggleGroup>
+                        </RadioButton>
+                        <RadioButton fx:id="btnCliente1" mnemonicParsing="false" text="No" toggleGroup="$SceltaDelivery">
+                           <font>
+                              <Font name="Georgia" size="18.0" />
+                           </font>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </RadioButton>
+                            </children>
+                            <VBox.margin>
+                                <Insets />
+                            </VBox.margin>
+                        </HBox>
+                        <HBox alignment="CENTER" prefHeight="120.0" spacing="100.0">
+                            <children>
+                                <Label prefWidth="180.0" text="Prenotazione">
+                                    <font>
+                                        <Font name="Georgia" size="25.0" />
+                                    </font>
+                                </Label>
+                                <RadioButton fx:id="btnRistoratore" mnemonicParsing="false" text="Si">
+                                    <font>
+                                        <Font name="Georgia" size="18.0" />
+                                    </font>
+                                    <cursor>
+                                        <Cursor fx:constant="HAND" />
+                                    </cursor>
+                           <toggleGroup>
+                              <ToggleGroup fx:id="SceltaPrenotazione" />
+                           </toggleGroup>
+                                </RadioButton>
+                                <RadioButton fx:id="btnCliente" layoutX="160.0" layoutY="10.0" mnemonicParsing="false" text="No" toggleGroup="$SceltaPrenotazione">
+                                    <font>
+                                        <Font name="Georgia" size="18.0" />
+                                    </font>
+                                    <cursor>
+                                        <Cursor fx:constant="HAND" />
+                                    </cursor>
+                                </RadioButton>
+                            </children>
+                            <VBox.margin>
+                                <Insets />
+                            </VBox.margin>
+                        </HBox>
+                        <HBox alignment="CENTER" layoutX="25.0" layoutY="1213.0" prefHeight="120.0" spacing="100.0">
+                            <children>
+                                <Button mnemonicParsing="false" style="-fx-background-radius: 10;" text="Aggiungi ristorante" textFill="#618569">
+                                    <font>
+                                        <Font size="25.0" />
+                                    </font>
+                                    <cursor>
+                                        <Cursor fx:constant="HAND" />
+                                    </cursor>
+                                </Button>
+                            </children>
+                        </HBox>
+                    </children>
+                    <opaqueInsets>
+                        <Insets />
+                    </opaqueInsets>
+                    <VBox.margin>
+                        <Insets bottom="20.0" left="60.0" right="60.0" top="20.0" />
+                    </VBox.margin>
+                    <padding>
+                        <Insets bottom="60.0" top="30.0" />
+                    </padding>
+                    <cursor>
+                        <Cursor fx:constant="DEFAULT" />
+                    </cursor>
+                </VBox>
+            </children>
+            <padding>
+                <Insets top="10.0" />
+            </padding>
+            <cursor>
+                <Cursor fx:constant="DEFAULT" />
+            </cursor>
+        </VBox>
+    </content>
+    <opaqueInsets>
+        <Insets />
+    </opaqueInsets>
+    <cursor>
+        <Cursor fx:constant="DEFAULT" />
+    </cursor>
+</ScrollPane>

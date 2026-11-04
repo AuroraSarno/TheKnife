@@ -41,7 +41,7 @@ public class ControllerBenvenuto {
     @FXML
     public void actionLogin(ActionEvent event) throws IOException {
         //carico il file FXML della schermata login
-        Parent loginRoot = FXMLLoader.load(getClass().getResource("Login.fxml"));
+        Parent loginRoot = FXMLLoader.load(getClass().getResource("/graficaFXML/autenticazione/Login.fxml"));
         Scene loginScene = new Scene(loginRoot);
 
         //prendo la schermata attuali tramite bottone
@@ -52,9 +52,9 @@ public class ControllerBenvenuto {
         currentStage.show();
     }
     @FXML
-    public void actionRegistrati(ActionEvent event) throws IOException {
+    public void actionRegistrazione(ActionEvent event) throws IOException {
         //carico il file FXML della schermata login
-        Parent loginRoot = FXMLLoader.load(getClass().getResource("Registrazione.fxml"));
+        Parent loginRoot = FXMLLoader.load(getClass().getResource("/graficaFXML/autenticazione/Registrazione.fxml"));
         Scene loginScene = new Scene(loginRoot);
 
         //prendo la schermata attuali tramite bottone
@@ -67,7 +67,7 @@ public class ControllerBenvenuto {
     @FXML
     public void actionGuest(ActionEvent event) throws IOException {
         //carico il file FXML della schermata login
-        Parent loginRoot = FXMLLoader.load(getClass().getResource("Ricerca.fxml"));
+        Parent loginRoot = FXMLLoader.load(getClass().getResource("/graficaFXML/ricerca/Ricerca.fxml"));
         Scene loginScene = new Scene(loginRoot);
 
         //prendo la schermata attuali tramite bottone

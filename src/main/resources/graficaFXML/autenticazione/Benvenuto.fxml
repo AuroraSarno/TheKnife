@@ -30,17 +30,17 @@
       </HBox>
       <HBox fx:id="hboxBottoni" alignment="CENTER" prefHeight="100.0" prefWidth="441.0" spacing="50.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Button fx:id="btnLogin" mnemonicParsing="false" prefHeight="47.0" prefWidth="193.0" text="Login">
+            <Button fx:id="btnLogin" mnemonicParsing="false" onAction="#actionLogin" prefHeight="47.0" prefWidth="193.0" text="Login">
                <font>
                   <Font name="Trebuchet MS" size="14.0" />
                </font>
             </Button>
-            <Button fx:id="btnRegistrazione" mnemonicParsing="false" prefHeight="47.0" prefWidth="206.0" text="Registrazione">
+            <Button fx:id="btnRegistrazione" mnemonicParsing="false" onAction="#actionRegistrazione" prefHeight="47.0" prefWidth="206.0" text="Registrazione">
                <font>
                   <Font name="Trebuchet MS" size="14.0" />
                </font>
             </Button>
-            <Button fx:id="btnGuest" mnemonicParsing="false" prefHeight="47.0" prefWidth="230.0" text="Accedi come guest">
+            <Button fx:id="btnGuest" mnemonicParsing="false" onAction="#actionGuest" prefHeight="47.0" prefWidth="230.0" text="Accedi come guest">
                <font>
                   <Font name="Trebuchet MS" size="14.0" />
                </font>
