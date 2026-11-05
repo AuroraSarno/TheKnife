@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<!-- La VBox principale funge da "scheda" bianca -->
+
+<VBox prefWidth="600.0" spacing="15.0" style="-fx-background-color: white; -fx-background-radius: 15; -fx-border-color: #e0e0e0; -fx-border-radius: 15; -fx-border-width: 1; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.05), 5, 0, 0, 2);" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.CardRecensioneController">
+
+    <padding>
+        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+    </padding>
+
+    <!-- RIGA 1: Autore e Stelle -->
+    <HBox alignment="CENTER_LEFT">
+        <Label id="nomeUtente" fx:id="lblNomeCliente" text="Nome Cliente" textFill="#2d4033">
+            <font>
+                <Font name="System Bold" size="18.0" />
+            </font>
+        </Label>
+
+        <!-- Questa 'Region' fa da molla e spinge le stelle tutte a destra -->
+        <Region HBox.hgrow="ALWAYS" />
+
+        <Label id="stelle" fx:id="lblVoto" text="⭐ 0.0 / 5" textFill="#618569">
+            <font>
+                <Font name="System Bold" size="16.0" />
+            </font>
+        </Label>
+    </HBox>
+
+    <!-- RIGA 2: Testo della recensione -->
+    <!-- wrapText="true" è fondamentale per far andare a capo i testi lunghi -->
+    <Label id="testoRecensione" fx:id="lblTestoRecensione" prefHeight="40.0" prefWidth="558.0" text="Testo della recensione..." textFill="#555555" wrapText="true">
+        <font>
+            <Font size="15.0" />
+        </font>
+    </Label>
+
+    <!-- RIGA 3: Il bottone Rispondi -->
+    <HBox alignment="BOTTOM_RIGHT">
+        <Button id="btnRisposaRecensione" fx:id="btnRispondi" mnemonicParsing="false" onAction="#apriPopUpRispostaRecensione" style="-fx-background-color: transparent; -fx-border-color: #618569; -fx-border-radius: 20; -fx-text-fill: #618569;" text="Rispondi">
+            <font>
+                <Font name="System Bold" size="14.0" />
+            </font>
+            <cursor>
+                <Cursor fx:constant="HAND" />
+            </cursor>
+        </Button>
+    </HBox>
+
+</VBox>

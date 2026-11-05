@@ -2,10 +2,7 @@ package ServerTK.Gestori;
 
 import ServerTK.Modelli.Citta;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -76,5 +73,25 @@ public class GestoreCitta {
 
         // conversione in Km della distanza
         return RAGGIO_TERRA_KM * c;
+    }
+
+    public String getNomeCittaDaID(int id){
+        String sql = "SELECT nome FROM Citta WHERE id_citta = ?";
+        String nomeCitta = "";
+
+        try(Connection con = ConnessioneDatabase.getConnection(); PreparedStatement ps = con.prepareStatement(sql)){
+
+            ps.setInt(1, id);
+
+            try (ResultSet rs = ps.executeQuery()){
+                if(rs.next()){
+                    nomeCitta = rs.getString("nome");
+                }
+            }
+
+        }catch(SQLException e){
+            System.out.println("Errore cerca nome città con ID:" + id + e.getMessage());
+        }
+        return nomeCitta;
     }
 }
