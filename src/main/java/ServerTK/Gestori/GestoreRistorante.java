@@ -26,7 +26,7 @@ public class GestoreRistorante{
 
         if(nome != null && !nome.trim().isEmpty()){
             sql.append(" AND nome ILIKE ?");
-            valoriParametri.add(nome);
+            valoriParametri.add("%" + nome.trim() + "%");
         }
 
         if(tipoCucina != null && !tipoCucina.trim().isEmpty()){
@@ -60,7 +60,7 @@ public class GestoreRistorante{
         }
 
         if(idCitta != null){
-            sql.append(" AND idCitta = ?");
+            sql.append(" AND id_citta = ?");
             valoriParametri.add(idCitta);
         }
 
